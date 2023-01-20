@@ -45,7 +45,26 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec fish
+bindsym $mod+Return exec gnome-terminal
+
+### Dual monitor setup
+exec --no-startup-id xrandr --output HDMI1 --left-of HDMI2
+exec --no-startup-id xrandr --output HDMI2 --primary --mode 3440x1440
+exec --no-startup-id xrandr --output HDMI1 --rotate left
+
+set $firstMonitor HDMI2
+set $secondMonitor HDMI1
+
+workspace 1 output $firstMonitor
+workspace 2 output $firstMonitor
+workspace 3 output $firstMonitor
+workspace 4 output $firstMonitor
+workspace 5 output $firstMonitor
+workspace 6 output $secondMonitor
+workspace 7 output $secondMonitor
+workspace 8 output $secondMonitor
+workspace 9 output $secondMonitor
+workspace 10 output $secondMonitor
 
 # kill focused window
 bindsym $mod+Shift+q kill
