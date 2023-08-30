@@ -1,5 +1,9 @@
 alias vim="nvim"
 alias get_idf='. $HOME/dev/esp-idf/export.fish'
+alias vpn-on="sudo wg-quick up wg0"
+alias vpn-off="sudo wg-quick down wg0"
+
+fish_vi_key_bindings
 
 function bind_bang
     switch (commandline -t)[-1]
@@ -20,7 +24,12 @@ function bind_dollar
     end
 end
 
-function fish_user_key_bindings
+function user_key_bindings
     bind ! bind_bang
     bind '$' bind_dollar
+end
+
+function fish_user_key_bindings
+    bind -M insert jk "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
+    bind -M insert kj "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char force-repaint; end"
 end
