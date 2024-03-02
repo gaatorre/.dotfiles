@@ -3,3 +3,5 @@
 	name = Gabriel Torres
 [core]
 	editor = nvim
+[init]
+	defaultBranch = main
