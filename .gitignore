@@ -1,0 +1,3 @@
+	fish/.config/fish/conf.d/*
+	fish_variables
+	omf/.config/omf/channel

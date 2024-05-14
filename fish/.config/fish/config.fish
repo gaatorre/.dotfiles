@@ -1,5 +1,4 @@
 alias vim="nvim"
-alias get_idf='. $HOME/dev/esp-idf/export.fish'
 alias vpn-on="sudo wg-quick up wg0"
 alias vpn-off="sudo wg-quick down wg0"
 
