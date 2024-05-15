@@ -44,3 +44,9 @@ for dir in */
     end
 end
 
+for script in scripts/*.fish
+    echo "Running $script"
+    echo
+    fish $script
+    echo
+end
