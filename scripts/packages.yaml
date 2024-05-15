@@ -1,0 +1,8 @@
+nvim:
+  - neovim
+
+tmux:
+  - tmux
+
+fish:
+  - fish
