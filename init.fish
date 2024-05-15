@@ -3,7 +3,7 @@ echo "Checking if stow is installed"
 set PM ""
 switch (uname)
     case Linux
-        set PM "sudo apt"
+        set PM "sudo apt -y"
     case Darwin
         set PM "brew"
 end
@@ -28,6 +28,7 @@ else
     echo "This is a personal machine, installing all packages"
 end
 
+# Stowing the configs that make sense to stow
 set bListWork $(cat blacklist.work | string collect)
 set bListPer $(cat blacklist.per | string collect)
 for dir in */ 
@@ -44,9 +45,26 @@ for dir in */
     end
 end
 
+# Running a script per item
 for script in scripts/*.fish
     echo "Running $script"
     echo
     fish $script
     echo
 end
+
+# Installing the depenencies required by every tool
+$PM update
+for dep in deps/*.deps
+    set deps $(cat $dep | string collect)
+    set deps (echo $deps)
+
+    for x in $deps
+        if test $x != ""
+            $PM install $x
+        end
+    end
+end
+
+pip3 install -r deps/requirements.txt
+
