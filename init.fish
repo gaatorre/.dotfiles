@@ -14,8 +14,8 @@ if command -q stow
    echo
 else
    echo "Installing gnu stow"
-   $PM update
-   $PM install stow
+   eval $PM update
+   eval $PM install stow
 end
 
 # Checking if this is a work machine
@@ -54,14 +54,14 @@ for script in scripts/*.fish
 end
 
 # Installing the depenencies required by every tool
-$PM update
+eval $PM update
 for dep in deps/*.deps
     set deps (cat $dep | string collect)
     set deps (echo $deps)
 
     for x in $deps
         if test $x != ""
-            $PM install $x
+            eval $PM install $x
         end
     end
 end
