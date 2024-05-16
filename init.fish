@@ -14,12 +14,12 @@ if command -q stow
    echo
 else
    echo "Installing gnu stow"
-   $PM update
-   $PM install stow
+   eval $PM update
+   eval $PM install stow
 end
 
 # Checking if this is a work machine
-test -n $(hostname | grep "mit")
+test -n (hostname | grep "mit")
 set isWork $status
 
 if test $isWork -eq 0
@@ -29,10 +29,10 @@ else
 end
 
 # Stowing the configs that make sense to stow
-set bListWork $(cat blacklist.work | string collect)
-set bListPer $(cat blacklist.per | string collect)
+set bListWork (cat blacklist.work | string collect)
+set bListPer (cat blacklist.per | string collect)
 for dir in */ 
-    set dir $(string trim -r -c / $dir)
+    set dir (string trim -r -c / $dir)
     if test $isWork -eq 0
         and string match -q -r "$dir" $bListWork
         echo "---- $dir"
@@ -54,14 +54,14 @@ for script in scripts/*.fish
 end
 
 # Installing the depenencies required by every tool
-$PM update
+eval $PM update
 for dep in deps/*.deps
-    set deps $(cat $dep | string collect)
+    set deps (cat $dep | string collect)
     set deps (echo $deps)
 
     for x in $deps
         if test $x != ""
-            $PM install $x
+            eval $PM install $x
         end
     end
 end
