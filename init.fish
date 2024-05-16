@@ -53,18 +53,11 @@ for script in scripts/*.fish
     echo
 end
 
-# Installing the depenencies required by every tool
-eval $PM update
-for dep in deps/*.deps
-    set deps (cat $dep | string collect)
-    set deps (echo $deps)
-
-    for x in $deps
-        if test $x != ""
-            eval $PM install $x
-        end
-    end
-end
-
 pip3 install -r deps/requirements.txt
 
+if test $argv[-1] = "--ansible"
+    echo "Running from ansible";
+else
+    echo "Not running from ansible"
+    fish deps.fish
+end
