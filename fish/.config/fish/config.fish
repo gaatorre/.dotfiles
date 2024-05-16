@@ -38,5 +38,5 @@ switch (uname)
     case Linux
         set SHELL "/usr/bin/fish"
     case Darwin
-        set PM "/opt/homebrew/bin/fish"
+        set SHELL "/opt/homebrew/bin/fish"
 end
