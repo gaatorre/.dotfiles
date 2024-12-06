@@ -5,6 +5,8 @@ local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
 lspconfig.rust_analyzer.setup {}
 lspconfig.clangd.setup {}
+lspconfig.cmake.setup {}
+lspconfig.arduino_language_server.setup{}
 
 
 -- Global mappings.

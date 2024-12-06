@@ -1,35 +1,48 @@
 local cmp = require'cmp'
 
 cmp.setup({
-snippet = {
--- REQUIRED - you must specify a snippet engine
-expand = function(args)
-vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
--- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
--- require('snippy').expand_snippet(args.body) -- For `snippy` users.
--- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
-end,
-},
-window = {
--- completion = cmp.config.window.bordered(),
--- documentation = cmp.config.window.bordered(),
-},
-mapping = cmp.mapping.preset.insert({
-['<C-b>'] = cmp.mapping.scroll_docs(-4),
-['<C-f>'] = cmp.mapping.scroll_docs(4),
-['<C-Space>'] = cmp.mapping.complete(),
-['<C-e>'] = cmp.mapping.abort(),
-['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-}),
-sources = cmp.config.sources({
-{ name = 'nvim_lsp' },
-{ name = 'vsnip' }, -- For vsnip users.
--- { name = 'luasnip' }, -- For luasnip users.
--- { name = 'ultisnips' }, -- For ultisnips users.
--- { name = 'snippy' }, -- For snippy users.
-}, {
-{ name = 'buffer' },
-})
+    snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        end,
+    },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    mapping = {
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ 
+            select = true,
+            behavior = cmp.ConfirmBehavior.Insert,
+        }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    },
+    sources = {
+        { name = 'nvim_lsp', keyword_length = 3 },
+        { name = 'vsnip' }, -- For vsnip users.
+        { name = 'path' },
+        { name = 'nvim_lua', keyword_length = 2 },
+        { name = 'nvim_lsp_signature_help', keyword_length = 2},
+        { name = 'calc' },
+        { name = 'buffer' },
+    },
+    formatting = {
+        fields = {'menu', 'abbr', 'kind'},
+        format = function(entry, item)
+            local menu_icon ={
+                nvim_lsp = 'λ',
+                vsnip = '⋗',
+                buffer = 'Ω',
+                path = '🖫',
+            }
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
+    },
 })
 
 -- Set configuration for specific filetype.
@@ -71,6 +84,10 @@ capabilities = capabilities
 }
 
 require('lspconfig')['rust_analyzer'].setup {
+capabilities = capabilities
+}
+
+require('lspconfig')['arduino_language_server'].setup {
 capabilities = capabilities
 }
 

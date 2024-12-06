@@ -19,11 +19,28 @@ Plug('hrsh7th/cmp-buffer')
 Plug('hrsh7th/cmp-path')
 Plug('hrsh7th/cmp-cmdline')
 Plug('hrsh7th/nvim-cmp')
+Plug('hrsh7th/cmp-nvim-lsp-signature-help')
+Plug('hrsh7th/cmp-nvim-lua')
+Plug('hrsh7th/cmp-vsnip')
+Plug('hrsh7th/vim-vsnip')
 
 -- Vsnip
 Plug('hrsh7th/cmp-vsnip')
 Plug('hrsh7th/vim-vsnip')
 
-Plug('akinsho/toggleterm.nvim')
+-- Rust
+Plug('vadimcn/codelldb')
+
+-- Debug
+Plug('puremourning/vimspector')
+
+-- Windows
+Plug('voldikss/vim-floaterm')
+
+-- Diagnostics window
+Plug('folke/trouble.nvim')
+
+-- Nerdtree
+Plug('preservim/nerdtree')
 
 vim.call('plug#end')
