@@ -21,12 +21,10 @@ Plug('hrsh7th/cmp-cmdline')
 Plug('hrsh7th/nvim-cmp')
 Plug('hrsh7th/cmp-nvim-lsp-signature-help')
 Plug('hrsh7th/cmp-nvim-lua')
-Plug('hrsh7th/cmp-vsnip')
-Plug('hrsh7th/vim-vsnip')
 
--- Vsnip
-Plug('hrsh7th/cmp-vsnip')
-Plug('hrsh7th/vim-vsnip')
+-- For ultisnips users.
+Plug('SirVer/ultisnips')
+Plug('quangnguyen30192/cmp-nvim-ultisnips')
 
 -- Rust
 Plug('vadimcn/codelldb')

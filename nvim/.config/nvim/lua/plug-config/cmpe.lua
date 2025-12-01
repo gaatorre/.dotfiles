@@ -16,14 +16,16 @@ cmp.setup({
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
         ['<CR>'] = cmp.mapping.confirm({ 
             select = true,
-            behavior = cmp.ConfirmBehavior.Insert,
+            behavior = cmp.ConfirmBehavior.Replace,
         }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     },
     sources = {
         { name = 'nvim_lsp', keyword_length = 3 },
-        { name = 'vsnip' }, -- For vsnip users.
+        { name = 'ultisnips' }, -- For vsnip users.
         { name = 'path' },
         { name = 'nvim_lua', keyword_length = 2 },
         { name = 'nvim_lsp_signature_help', keyword_length = 2},
@@ -73,7 +75,6 @@ sources = cmp.config.sources({
 })
 
 -- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 vim.lsp.enable('pyright')
 vim.lsp.enable('clangd')
