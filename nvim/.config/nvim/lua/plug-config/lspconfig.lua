@@ -1,12 +1,12 @@
 -- Setup language servers.
-local lspconfig = require('lspconfig')
+local lspconfig = vim.lsp.config
 
 -- Add language servers here!
-lspconfig.pyright.setup {}
-lspconfig.rust_analyzer.setup {}
-lspconfig.clangd.setup {}
-lspconfig.cmake.setup {}
-lspconfig.arduino_language_server.setup{}
+-- lspconfig.pyright.setup {}
+-- lspconfig.rust_analyzer.setup {}
+-- lspconfig.clangd.setup {}
+-- lspconfig.cmake.setup {}
+-- lspconfig.arduino_language_server.setup{}
 
 
 -- Global mappings.
